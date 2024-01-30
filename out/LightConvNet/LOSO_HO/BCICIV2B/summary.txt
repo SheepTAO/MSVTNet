@@ -1,0 +1,105 @@
+[Start Time]: Mon Jan  8 12:26:44 2024
+[DPEEG Version]: 0.3.5
+[Description]: None
+[LOSO_HO:
+  [trainer]: [Network architecture]:
+             LightConvNet(
+               (spacial_block): Sequential(
+                 (0): Conv2d(9, 64, kernel_size=(3, 1), stride=(1, 1))
+                 (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (2): ELU(alpha=1.0)
+               )
+               (temporal_block): LogVarLayer()
+               (conv): LightweightConv1d()
+               (classify): Sequential(
+                 (0): Linear(in_features=64, out_features=2, bias=True)
+                 (1): LogSoftmax(dim=1)
+               )
+             )
+             ==========================================================================================
+             Layer (type:depth-idx)                   Output Shape              Param #
+             ==========================================================================================
+             LightConvNet                             [1, 2]                    --
+             ├─Sequential: 1-1                        [1, 64, 1, 1000]          --
+             │    └─Conv2d: 2-1                       [1, 64, 1, 1000]          1,792
+             │    └─BatchNorm2d: 2-2                  [1, 64, 1, 1000]          128
+             │    └─ELU: 2-3                          [1, 64, 1, 1000]          --
+             ├─LogVarLayer: 1-2                       [1, 64, 4]                --
+             ├─LightweightConv1d: 1-3                 [1, 64, 1]                32
+             ├─Sequential: 1-4                        [1, 2]                    --
+             │    └─Linear: 2-4                       [1, 2]                    130
+             │    └─LogSoftmax: 2-5                   [1, 2]                    --
+             ==========================================================================================
+             Total params: 2,082
+             Trainable params: 2,082
+             Non-trainable params: 0
+             Total mult-adds (M): 1.79
+             ==========================================================================================
+             Input size (MB): 0.11
+             Forward/backward pass size (MB): 1.02
+             Params size (MB): 0.01
+             Estimated Total Size (MB): 1.14
+             ==========================================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: Adam
+             [Learning rate]: 0.002
+             [Grad Acc]: 1
+             [Batch Size]: 512
+  [out_folder]: out
+  [max_epochs_s1]: 500
+  [no_increase_epochs]: 40
+  [var_check]: None
+  [split_val]: True
+  [test_size]: 0.25
+  [second_stage]: True
+  [load_best_state]: True
+  [max_epochs_s2]: 200
+  [seed]: 42
+  [verbose]: INFO
+]
+[BCICIV2B:
+  [subjects]: None
+  [tmin]: 0
+  [tmax]: 4
+  [preprocess]: None
+  [transforms]: ComposeTransforms(
+                 (0): Normalization(mode=z-score, factor_new=0.001, verbose=None)
+                 (1): FilterBank(freq=250, filter_bank=[[4, 8], [8, 12], [12, 16], [16, 20], [20, 24], [24, 28], [28, 32], [32, 36], [36, 40]], transition_bandwidth=2.0, gstop=30, gpass=3)
+                )
+  [test_size]: 0.25
+  [mode]: cross_ses
+  [test_sessions]: [3, 4]
+  [picks]: None
+  [baseline]: None
+  [seed]: 42
+  [verbose]: None
+]
+---------- Sub_1 ----------
+Acc = 71.25% | Kappa = 0.43
+
+---------- Sub_2 ----------
+Acc = 59.41% | Kappa = 0.19
+
+---------- Sub_3 ----------
+Acc = 61.94% | Kappa = 0.24
+
+---------- Sub_4 ----------
+Acc = 83.78% | Kappa = 0.68
+
+---------- Sub_5 ----------
+Acc = 81.89% | Kappa = 0.64
+
+---------- Sub_6 ----------
+Acc = 74.03% | Kappa = 0.48
+
+---------- Sub_7 ----------
+Acc = 72.36% | Kappa = 0.45
+
+---------- Sub_8 ----------
+Acc = 72.63% | Kappa = 0.45
+
+---------- Sub_9 ----------
+Acc = 75.42% | Kappa = 0.51
+
+---------- MODEL ----------
+Acc = 72.52% | Kappa = 0.45

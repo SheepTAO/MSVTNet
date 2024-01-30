@@ -1,0 +1,106 @@
+[Start Time]: Mon Jan  8 13:28:46 2024
+[DPEEG Version]: 0.3.5
+[Description]: None
+[KFold:
+  [trainer]: [Network architecture]:
+             LightConvNet(
+               (spacial_block): Sequential(
+                 (0): Conv2d(9, 64, kernel_size=(22, 1), stride=(1, 1))
+                 (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (2): ELU(alpha=1.0)
+               )
+               (temporal_block): LogVarLayer()
+               (conv): LightweightConv1d()
+               (classify): Sequential(
+                 (0): Linear(in_features=64, out_features=4, bias=True)
+                 (1): LogSoftmax(dim=1)
+               )
+             )
+             ==========================================================================================
+             Layer (type:depth-idx)                   Output Shape              Param #
+             ==========================================================================================
+             LightConvNet                             [1, 4]                    --
+             ├─Sequential: 1-1                        [1, 64, 1, 1000]          --
+             │    └─Conv2d: 2-1                       [1, 64, 1, 1000]          12,736
+             │    └─BatchNorm2d: 2-2                  [1, 64, 1, 1000]          128
+             │    └─ELU: 2-3                          [1, 64, 1, 1000]          --
+             ├─LogVarLayer: 1-2                       [1, 64, 4]                --
+             ├─LightweightConv1d: 1-3                 [1, 64, 1]                32
+             ├─Sequential: 1-4                        [1, 4]                    --
+             │    └─Linear: 2-4                       [1, 4]                    260
+             │    └─LogSoftmax: 2-5                   [1, 4]                    --
+             ==========================================================================================
+             Total params: 13,156
+             Trainable params: 13,156
+             Non-trainable params: 0
+             Total mult-adds (M): 12.74
+             ==========================================================================================
+             Input size (MB): 0.79
+             Forward/backward pass size (MB): 1.02
+             Params size (MB): 0.05
+             Estimated Total Size (MB): 1.87
+             ==========================================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: Adam
+             [Learning rate]: 0.001
+             [Grad Acc]: 1
+             [Batch Size]: 128
+  [k]: 5
+  [out_folder]: out
+  [max_epochs_s1]: 1500
+  [max_epochs_s2]: 600
+  [no_increase_epochs]: 100
+  [second_stage]: True
+  [load_best_state]: True
+  [var_check]: val_inacc
+  [isolate_testset]: True
+  [shuffle]: True
+  [seed]: 42
+  [verbose]: INFO
+]
+[BCICIV2A:
+  [subjects]: None
+  [tmin]: 0
+  [tmax]: 4
+  [preprocess]: None
+  [transforms]: ComposeTransforms(
+                 (0): Normalization(mode=z-score, factor_new=0.001, verbose=None)
+                 (1): FilterBank(freq=250, filter_bank=[[4, 8], [8, 12], [12, 16], [16, 20], [20, 24], [24, 28], [28, 32], [32, 36], [36, 40]], transition_bandwidth=2.0, gstop=30, gpass=3)
+                 (2): Augmentation(method=segmentation_and_reconstruction, only_train=True, kwargs={'multiply': 1})
+                )
+  [test_size]: 0.25
+  [mode]: cross_ses
+  [picks]: None
+  [baseline]: None
+  [seed]: 42
+  [verbose]: None
+]
+---------- Sub_1 ----------
+Acc = 86.46% | Kappa = 0.82
+
+---------- Sub_2 ----------
+Acc = 54.31% | Kappa = 0.39
+
+---------- Sub_3 ----------
+Acc = 90.49% | Kappa = 0.87
+
+---------- Sub_4 ----------
+Acc = 78.47% | Kappa = 0.71
+
+---------- Sub_5 ----------
+Acc = 64.10% | Kappa = 0.52
+
+---------- Sub_6 ----------
+Acc = 60.35% | Kappa = 0.47
+
+---------- Sub_7 ----------
+Acc = 86.25% | Kappa = 0.82
+
+---------- Sub_8 ----------
+Acc = 84.65% | Kappa = 0.80
+
+---------- Sub_9 ----------
+Acc = 84.31% | Kappa = 0.79
+
+---------- MODEL ----------
+Acc = 76.60% | Kappa = 0.69

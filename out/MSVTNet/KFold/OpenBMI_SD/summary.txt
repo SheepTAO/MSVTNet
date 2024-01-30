@@ -1,0 +1,342 @@
+[Start Time]: Thu Jan 11 17:58:27 2024
+[DPEEG Version]: 0.3.5
+[Description]: None
+[KFold:
+  [trainer]: [Network architecture]:
+             MSVTNet(
+               (mstsconv): ModuleList(
+                 (0): Sequential(
+                   (0): TSConv(
+                     (0): Conv2d(1, 9, kernel_size=(1, 15), stride=(1, 1), padding=same, bias=False)
+                     (1): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (2): Conv2d(9, 18, kernel_size=(20, 1), stride=(1, 1), groups=9, bias=False)
+                     (3): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (4): ELU(alpha=1.0)
+                     (5): AvgPool2d(kernel_size=(1, 8), stride=(1, 8), padding=0)
+                     (6): Dropout(p=0.3, inplace=False)
+                     (7): Conv2d(18, 18, kernel_size=(1, 15), stride=(1, 1), padding=same, groups=18, bias=False)
+                     (8): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (9): ELU(alpha=1.0)
+                     (10): AvgPool2d(kernel_size=(1, 7), stride=(1, 7), padding=0)
+                     (11): Dropout(p=0.3, inplace=False)
+                   )
+                   (1): Rearrange('b d 1 t -> b t d')
+                 )
+                 (1): Sequential(
+                   (0): TSConv(
+                     (0): Conv2d(1, 9, kernel_size=(1, 31), stride=(1, 1), padding=same, bias=False)
+                     (1): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (2): Conv2d(9, 18, kernel_size=(20, 1), stride=(1, 1), groups=9, bias=False)
+                     (3): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (4): ELU(alpha=1.0)
+                     (5): AvgPool2d(kernel_size=(1, 8), stride=(1, 8), padding=0)
+                     (6): Dropout(p=0.3, inplace=False)
+                     (7): Conv2d(18, 18, kernel_size=(1, 15), stride=(1, 1), padding=same, groups=18, bias=False)
+                     (8): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (9): ELU(alpha=1.0)
+                     (10): AvgPool2d(kernel_size=(1, 7), stride=(1, 7), padding=0)
+                     (11): Dropout(p=0.3, inplace=False)
+                   )
+                   (1): Rearrange('b d 1 t -> b t d')
+                 )
+                 (2): Sequential(
+                   (0): TSConv(
+                     (0): Conv2d(1, 9, kernel_size=(1, 63), stride=(1, 1), padding=same, bias=False)
+                     (1): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (2): Conv2d(9, 18, kernel_size=(20, 1), stride=(1, 1), groups=9, bias=False)
+                     (3): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (4): ELU(alpha=1.0)
+                     (5): AvgPool2d(kernel_size=(1, 8), stride=(1, 8), padding=0)
+                     (6): Dropout(p=0.3, inplace=False)
+                     (7): Conv2d(18, 18, kernel_size=(1, 15), stride=(1, 1), padding=same, groups=18, bias=False)
+                     (8): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (9): ELU(alpha=1.0)
+                     (10): AvgPool2d(kernel_size=(1, 7), stride=(1, 7), padding=0)
+                     (11): Dropout(p=0.3, inplace=False)
+                   )
+                   (1): Rearrange('b d 1 t -> b t d')
+                 )
+                 (3): Sequential(
+                   (0): TSConv(
+                     (0): Conv2d(1, 9, kernel_size=(1, 125), stride=(1, 1), padding=same, bias=False)
+                     (1): BatchNorm2d(9, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (2): Conv2d(9, 18, kernel_size=(20, 1), stride=(1, 1), groups=9, bias=False)
+                     (3): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (4): ELU(alpha=1.0)
+                     (5): AvgPool2d(kernel_size=(1, 8), stride=(1, 8), padding=0)
+                     (6): Dropout(p=0.3, inplace=False)
+                     (7): Conv2d(18, 18, kernel_size=(1, 15), stride=(1, 1), padding=same, groups=18, bias=False)
+                     (8): BatchNorm2d(18, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                     (9): ELU(alpha=1.0)
+                     (10): AvgPool2d(kernel_size=(1, 7), stride=(1, 7), padding=0)
+                     (11): Dropout(p=0.3, inplace=False)
+                   )
+                   (1): Rearrange('b d 1 t -> b t d')
+                 )
+               )
+               (branch_head): ModuleList(
+                 (0-3): 4 x ClsHead(
+                   (0): Flatten(start_dim=1, end_dim=-1)
+                   (1): Linear(in_features=306, out_features=2, bias=True)
+                   (2): LogSoftmax(dim=1)
+                 )
+               )
+               (transformer): Transformer(
+                 (pos_embedding): PositionalEncoding()
+                 (dropout): Dropout(p=0.5, inplace=False)
+                 (trans): TransformerEncoder(
+                   (layers): ModuleList(
+                     (0-1): 2 x TransformerEncoderLayer(
+                       (self_attn): MultiheadAttention(
+                         (out_proj): NonDynamicallyQuantizableLinear(in_features=72, out_features=72, bias=True)
+                       )
+                       (linear1): Linear(in_features=72, out_features=72, bias=True)
+                       (dropout): Dropout(p=0.5, inplace=False)
+                       (linear2): Linear(in_features=72, out_features=72, bias=True)
+                       (norm1): LayerNorm((72,), eps=1e-05, elementwise_affine=True)
+                       (norm2): LayerNorm((72,), eps=1e-05, elementwise_affine=True)
+                       (dropout1): Dropout(p=0.5, inplace=False)
+                       (dropout2): Dropout(p=0.5, inplace=False)
+                     )
+                   )
+                   (norm): LayerNorm((72,), eps=1e-05, elementwise_affine=True)
+                 )
+               )
+               (last_head): ClsHead(
+                 (0): Flatten(start_dim=1, end_dim=-1)
+                 (1): Linear(in_features=72, out_features=2, bias=True)
+                 (2): LogSoftmax(dim=1)
+               )
+             )
+             ===============================================================================================
+             Layer (type:depth-idx)                                                 Param #
+             ===============================================================================================
+             MSVTNet                                                                --
+             ├─ModuleList: 1-1                                                      --
+             │    └─Sequential: 2-1                                                 --
+             │    │    └─TSConv: 3-1                                                855
+             │    │    └─Rearrange: 3-2                                             --
+             │    └─Sequential: 2-2                                                 --
+             │    │    └─TSConv: 3-3                                                999
+             │    │    └─Rearrange: 3-4                                             --
+             │    └─Sequential: 2-3                                                 --
+             │    │    └─TSConv: 3-5                                                1,287
+             │    │    └─Rearrange: 3-6                                             --
+             │    └─Sequential: 2-4                                                 --
+             │    │    └─TSConv: 3-7                                                1,845
+             │    │    └─Rearrange: 3-8                                             --
+             ├─ModuleList: 1-2                                                      --
+             │    └─ClsHead: 2-5                                                    --
+             │    │    └─Flatten: 3-9                                               --
+             │    │    └─Linear: 3-10                                               614
+             │    │    └─LogSoftmax: 3-11                                           --
+             │    └─ClsHead: 2-6                                                    --
+             │    │    └─Flatten: 3-12                                              --
+             │    │    └─Linear: 3-13                                               614
+             │    │    └─LogSoftmax: 3-14                                           --
+             │    └─ClsHead: 2-7                                                    --
+             │    │    └─Flatten: 3-15                                              --
+             │    │    └─Linear: 3-16                                               614
+             │    │    └─LogSoftmax: 3-17                                           --
+             │    └─ClsHead: 2-8                                                    --
+             │    │    └─Flatten: 3-18                                              --
+             │    │    └─Linear: 3-19                                               614
+             │    │    └─LogSoftmax: 3-20                                           --
+             ├─Transformer: 1-3                                                     72
+             │    └─PositionalEncoding: 2-9                                         1,296
+             │    └─Dropout: 2-10                                                   --
+             │    └─TransformerEncoder: 2-11                                        --
+             │    │    └─ModuleList: 3-21                                           63,648
+             │    │    └─LayerNorm: 3-22                                            144
+             ├─ClsHead: 1-4                                                         --
+             │    └─Flatten: 2-12                                                   --
+             │    └─Linear: 2-13                                                    146
+             │    └─LogSoftmax: 2-14                                                --
+             ===============================================================================================
+             Total params: 72,748
+             Trainable params: 72,748
+             Non-trainable params: 0
+             ===============================================================================================
+             [Loss function]: JointCrossEntoryLoss()
+             [Optimizer]: Adam
+             [Learning rate]: 0.001
+             [Grad Acc]: 1
+             [Batch Size]: 64
+  [k]: 5
+  [out_folder]: out
+  [max_epochs_s1]: 1500
+  [max_epochs_s2]: 600
+  [no_increase_epochs]: 100
+  [second_stage]: True
+  [load_best_state]: True
+  [var_check]: val_inacc
+  [isolate_testset]: True
+  [shuffle]: True
+  [seed]: 42
+  [verbose]: INFO
+]
+[Custom dataset]
+---------- Sub_1 ----------
+Acc = 82.40% | Kappa = 0.65
+
+---------- Sub_2 ----------
+Acc = 100.00% | Kappa = 1.00
+
+---------- Sub_3 ----------
+Acc = 97.60% | Kappa = 0.95
+
+---------- Sub_4 ----------
+Acc = 63.60% | Kappa = 0.27
+
+---------- Sub_5 ----------
+Acc = 98.80% | Kappa = 0.98
+
+---------- Sub_6 ----------
+Acc = 81.20% | Kappa = 0.62
+
+---------- Sub_7 ----------
+Acc = 66.80% | Kappa = 0.34
+
+---------- Sub_8 ----------
+Acc = 67.20% | Kappa = 0.34
+
+---------- Sub_9 ----------
+Acc = 80.00% | Kappa = 0.60
+
+---------- Sub_10 ----------
+Acc = 74.40% | Kappa = 0.49
+
+---------- Sub_11 ----------
+Acc = 58.80% | Kappa = 0.18
+
+---------- Sub_12 ----------
+Acc = 75.20% | Kappa = 0.50
+
+---------- Sub_13 ----------
+Acc = 70.80% | Kappa = 0.42
+
+---------- Sub_14 ----------
+Acc = 70.40% | Kappa = 0.41
+
+---------- Sub_15 ----------
+Acc = 76.80% | Kappa = 0.54
+
+---------- Sub_16 ----------
+Acc = 54.40% | Kappa = 0.09
+
+---------- Sub_17 ----------
+Acc = 88.40% | Kappa = 0.77
+
+---------- Sub_18 ----------
+Acc = 90.80% | Kappa = 0.82
+
+---------- Sub_19 ----------
+Acc = 83.60% | Kappa = 0.67
+
+---------- Sub_20 ----------
+Acc = 57.60% | Kappa = 0.15
+
+---------- Sub_21 ----------
+Acc = 100.00% | Kappa = 1.00
+
+---------- Sub_22 ----------
+Acc = 89.60% | Kappa = 0.79
+
+---------- Sub_23 ----------
+Acc = 73.20% | Kappa = 0.46
+
+---------- Sub_24 ----------
+Acc = 63.60% | Kappa = 0.27
+
+---------- Sub_25 ----------
+Acc = 62.40% | Kappa = 0.25
+
+---------- Sub_26 ----------
+Acc = 53.20% | Kappa = 0.06
+
+---------- Sub_27 ----------
+Acc = 57.20% | Kappa = 0.14
+
+---------- Sub_28 ----------
+Acc = 94.40% | Kappa = 0.89
+
+---------- Sub_29 ----------
+Acc = 86.80% | Kappa = 0.74
+
+---------- Sub_30 ----------
+Acc = 75.60% | Kappa = 0.51
+
+---------- Sub_31 ----------
+Acc = 85.60% | Kappa = 0.71
+
+---------- Sub_32 ----------
+Acc = 85.20% | Kappa = 0.70
+
+---------- Sub_33 ----------
+Acc = 100.00% | Kappa = 1.00
+
+---------- Sub_34 ----------
+Acc = 60.40% | Kappa = 0.21
+
+---------- Sub_35 ----------
+Acc = 89.60% | Kappa = 0.79
+
+---------- Sub_36 ----------
+Acc = 96.40% | Kappa = 0.93
+
+---------- Sub_37 ----------
+Acc = 98.00% | Kappa = 0.96
+
+---------- Sub_38 ----------
+Acc = 57.20% | Kappa = 0.14
+
+---------- Sub_39 ----------
+Acc = 95.20% | Kappa = 0.90
+
+---------- Sub_40 ----------
+Acc = 60.80% | Kappa = 0.22
+
+---------- Sub_41 ----------
+Acc = 71.60% | Kappa = 0.43
+
+---------- Sub_42 ----------
+Acc = 54.00% | Kappa = 0.08
+
+---------- Sub_43 ----------
+Acc = 82.00% | Kappa = 0.64
+
+---------- Sub_44 ----------
+Acc = 98.80% | Kappa = 0.98
+
+---------- Sub_45 ----------
+Acc = 92.00% | Kappa = 0.84
+
+---------- Sub_46 ----------
+Acc = 60.80% | Kappa = 0.22
+
+---------- Sub_47 ----------
+Acc = 50.40% | Kappa = 0.01
+
+---------- Sub_48 ----------
+Acc = 74.40% | Kappa = 0.49
+
+---------- Sub_49 ----------
+Acc = 76.00% | Kappa = 0.52
+
+---------- Sub_50 ----------
+Acc = 59.20% | Kappa = 0.18
+
+---------- Sub_51 ----------
+Acc = 68.80% | Kappa = 0.38
+
+---------- Sub_52 ----------
+Acc = 76.80% | Kappa = 0.54
+
+---------- Sub_53 ----------
+Acc = 58.00% | Kappa = 0.16
+
+---------- Sub_54 ----------
+Acc = 54.00% | Kappa = 0.08
+
+---------- MODEL ----------
+Acc = 75.93% | Kappa = 0.52

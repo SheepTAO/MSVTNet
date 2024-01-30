@@ -1,0 +1,130 @@
+[Start Time]: Thu Nov 23 21:53:29 2023
+[DPEEG Version]: 0.3.5
+[Description]: None
+[KFold:
+  [trainer]: [Network architecture]:
+             EEGNet(
+               (filter): Sequential(
+                 (0): Conv2d(1, 8, kernel_size=(1, 63), stride=(1, 1), padding=(0, 31), bias=False)
+                 (1): BatchNorm2d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+               )
+               (depthwise_conv): Sequential(
+                 (0): Conv2dWithNorm(8, 16, kernel_size=(22, 1), stride=(1, 1), groups=8, bias=False, max_norm=1, p=2)
+                 (1): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (2): ELU(alpha=1.0)
+                 (3): AvgPool2d(kernel_size=(1, 8), stride=(1, 8), padding=0)
+                 (4): Dropout(p=0.5, inplace=False)
+               )
+               (separable_conv): Sequential(
+                 (0): Conv2d(16, 16, kernel_size=(1, 15), stride=(1, 1), padding=(0, 7), groups=16, bias=False)
+                 (1): Conv2d(16, 16, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                 (2): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (3): ELU(alpha=1.0)
+                 (4): AvgPool2d(kernel_size=(1, 16), stride=(1, 16), padding=0)
+                 (5): Dropout(p=0.5, inplace=False)
+               )
+               (flatten): Flatten(start_dim=1, end_dim=-1)
+               (fc): Sequential(
+                 (0): Linear(in_features=112, out_features=4, bias=True)
+                 (1): LogSoftmax(dim=1)
+               )
+             )
+             ==========================================================================================
+             Layer (type:depth-idx)                   Output Shape              Param #
+             ==========================================================================================
+             EEGNet                                   [1, 4]                    --
+             ├─Sequential: 1-1                        [1, 8, 22, 1000]          --
+             │    └─Conv2d: 2-1                       [1, 8, 22, 1000]          504
+             │    └─BatchNorm2d: 2-2                  [1, 8, 22, 1000]          16
+             ├─Sequential: 1-2                        [1, 16, 1, 125]           --
+             │    └─Conv2dWithNorm: 2-3               [1, 16, 1, 1000]          352
+             │    └─BatchNorm2d: 2-4                  [1, 16, 1, 1000]          32
+             │    └─ELU: 2-5                          [1, 16, 1, 1000]          --
+             │    └─AvgPool2d: 2-6                    [1, 16, 1, 125]           --
+             │    └─Dropout: 2-7                      [1, 16, 1, 125]           --
+             ├─Sequential: 1-3                        [1, 16, 1, 7]             --
+             │    └─Conv2d: 2-8                       [1, 16, 1, 125]           240
+             │    └─Conv2d: 2-9                       [1, 16, 1, 125]           256
+             │    └─BatchNorm2d: 2-10                 [1, 16, 1, 125]           32
+             │    └─ELU: 2-11                         [1, 16, 1, 125]           --
+             │    └─AvgPool2d: 2-12                   [1, 16, 1, 7]             --
+             │    └─Dropout: 2-13                     [1, 16, 1, 7]             --
+             ├─Flatten: 1-4                           [1, 112]                  --
+             ├─Sequential: 1-5                        [1, 4]                    --
+             │    └─Linear: 2-14                      [1, 4]                    452
+             │    └─LogSoftmax: 2-15                  [1, 4]                    --
+             ==========================================================================================
+             Total params: 1,884
+             Trainable params: 1,884
+             Non-trainable params: 0
+             Total mult-adds (M): 11.50
+             ==========================================================================================
+             Input size (MB): 0.09
+             Forward/backward pass size (MB): 3.12
+             Params size (MB): 0.01
+             Estimated Total Size (MB): 3.22
+             ==========================================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: Adam
+             [Learning rate]: 0.001
+             [Grad Acc]: 1
+             [Batch Size]: 128
+  [k]: 5
+  [out_folder]: out
+  [max_epochs_s1]: 1500
+  [max_epochs_s2]: 600
+  [no_increase_epochs]: 100
+  [second_stage]: True
+  [load_best_state]: True
+  [var_check]: val_inacc
+  [isolate_testset]: True
+  [shuffle]: True
+  [seed]: 42
+  [verbose]: INFO
+]
+[BCICIV2A:
+  [subjects]: None
+  [tmin]: 0
+  [tmax]: 4
+  [preprocess]: None
+  [transforms]: ComposeTransforms(
+                 (0): Normalization(mode=z-score, factor_new=0.001, verbose=None)
+                 (1): Augmentation(method=segmentation_and_reconstruction, only_train=True, kwargs={'multiply': 1})
+                 (2): Unsqueeze(dim=1)
+                )
+  [test_size]: 0.25
+  [mode]: cross_ses
+  [picks]: None
+  [baseline]: None
+  [seed]: 42
+  [verbose]: None
+]
+---------- Sub_1 ----------
+Acc = 81.74% | Kappa = 0.76
+
+---------- Sub_2 ----------
+Acc = 52.92% | Kappa = 0.37
+
+---------- Sub_3 ----------
+Acc = 85.42% | Kappa = 0.81
+
+---------- Sub_4 ----------
+Acc = 63.19% | Kappa = 0.51
+
+---------- Sub_5 ----------
+Acc = 70.62% | Kappa = 0.61
+
+---------- Sub_6 ----------
+Acc = 56.81% | Kappa = 0.42
+
+---------- Sub_7 ----------
+Acc = 84.24% | Kappa = 0.79
+
+---------- Sub_8 ----------
+Acc = 78.12% | Kappa = 0.71
+
+---------- Sub_9 ----------
+Acc = 80.62% | Kappa = 0.74
+
+---------- MODEL ----------
+Acc = 72.63% | Kappa = 0.64

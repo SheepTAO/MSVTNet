@@ -1,0 +1,111 @@
+[Start Time]: Tue Nov 28 00:50:53 2023
+[DPEEG Version]: 0.3.5
+[Description]: None
+[LOSO_HO:
+  [trainer]: [Network architecture]:
+             ShallowConvNet(
+               (conv): Sequential(
+                 (0): Conv2dWithNorm(1, 40, kernel_size=(1, 14), stride=(1, 1), bias=False, max_norm=2, p=2)
+                 (1): Conv2dWithNorm(40, 40, kernel_size=(3, 1), stride=(1, 1), groups=40, bias=False, max_norm=2, p=2)
+                 (2): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (3): Lambda()
+                 (4): AvgPool2d(kernel_size=(1, 35), stride=(1, 7), padding=0)
+                 (5): Lambda()
+               )
+               (head): Sequential(
+                 (0): Flatten(start_dim=1, end_dim=-1)
+                 (1): Dropout(p=0.5, inplace=False)
+                 (2): LinearWithNorm(in_features=5480, out_features=2, bias=True, max_norm=0.5, p=2)
+                 (3): LogSoftmax(dim=1)
+               )
+             )
+             ==========================================================================================
+             Layer (type:depth-idx)                   Output Shape              Param #
+             ==========================================================================================
+             ShallowConvNet                           [1, 2]                    --
+             ├─Sequential: 1-1                        [1, 40, 1, 137]           --
+             │    └─Conv2dWithNorm: 2-1               [1, 40, 3, 987]           560
+             │    └─Conv2dWithNorm: 2-2               [1, 40, 1, 987]           120
+             │    └─BatchNorm2d: 2-3                  [1, 40, 1, 987]           80
+             │    └─Lambda: 2-4                       [1, 40, 1, 987]           --
+             │    └─AvgPool2d: 2-5                    [1, 40, 1, 137]           --
+             │    └─Lambda: 2-6                       [1, 40, 1, 137]           --
+             ├─Sequential: 1-2                        [1, 2]                    --
+             │    └─Flatten: 2-7                      [1, 5480]                 --
+             │    └─Dropout: 2-8                      [1, 5480]                 --
+             │    └─LinearWithNorm: 2-9               [1, 2]                    10,962
+             │    └─LogSoftmax: 2-10                  [1, 2]                    --
+             ==========================================================================================
+             Total params: 11,722
+             Trainable params: 11,722
+             Non-trainable params: 0
+             Total mult-adds (M): 1.79
+             ==========================================================================================
+             Input size (MB): 0.01
+             Forward/backward pass size (MB): 1.58
+             Params size (MB): 0.05
+             Estimated Total Size (MB): 1.64
+             ==========================================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: Adam
+             [Learning rate]: 0.002
+             [Grad Acc]: 1
+             [Batch Size]: 512
+  [out_folder]: out
+  [max_epochs_s1]: 500
+  [no_increase_epochs]: 40
+  [var_check]: None
+  [split_val]: True
+  [test_size]: 0.25
+  [second_stage]: True
+  [load_best_state]: True
+  [max_epochs_s2]: 200
+  [seed]: 42
+  [verbose]: INFO
+]
+[BCICIV2B:
+  [subjects]: None
+  [tmin]: 0
+  [tmax]: 4
+  [preprocess]: None
+  [transforms]: ComposeTransforms(
+                 (0): Normalization(mode=z-score, factor_new=0.001, verbose=None)
+                 (1): Unsqueeze(dim=1)
+                )
+  [test_size]: 0.25
+  [mode]: cross_ses
+  [test_sessions]: [3, 4]
+  [picks]: None
+  [baseline]: None
+  [seed]: 42
+  [verbose]: None
+]
+---------- Sub_1 ----------
+Acc = 73.47% | Kappa = 0.47
+
+---------- Sub_2 ----------
+Acc = 66.76% | Kappa = 0.34
+
+---------- Sub_3 ----------
+Acc = 60.56% | Kappa = 0.21
+
+---------- Sub_4 ----------
+Acc = 80.81% | Kappa = 0.62
+
+---------- Sub_5 ----------
+Acc = 82.16% | Kappa = 0.64
+
+---------- Sub_6 ----------
+Acc = 79.44% | Kappa = 0.59
+
+---------- Sub_7 ----------
+Acc = 78.19% | Kappa = 0.56
+
+---------- Sub_8 ----------
+Acc = 75.00% | Kappa = 0.50
+
+---------- Sub_9 ----------
+Acc = 72.22% | Kappa = 0.44
+
+---------- MODEL ----------
+Acc = 74.29% | Kappa = 0.49

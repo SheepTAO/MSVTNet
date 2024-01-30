@@ -1,0 +1,225 @@
+[Start Time]: Thu Nov 23 21:57:04 2023
+[DPEEG Version]: 0.3.5
+[Description]: None
+[KFold:
+  [trainer]: [Network architecture]:
+             ShallowConvNet(
+               (conv): Sequential(
+                 (0): Conv2dWithNorm(1, 40, kernel_size=(1, 14), stride=(1, 1), bias=False, max_norm=2, p=2)
+                 (1): Conv2dWithNorm(40, 40, kernel_size=(20, 1), stride=(1, 1), groups=40, bias=False, max_norm=2, p=2)
+                 (2): BatchNorm2d(40, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 (3): Lambda()
+                 (4): AvgPool2d(kernel_size=(1, 35), stride=(1, 7), padding=0)
+                 (5): Lambda()
+               )
+               (head): Sequential(
+                 (0): Flatten(start_dim=1, end_dim=-1)
+                 (1): Dropout(p=0.5, inplace=False)
+                 (2): LinearWithNorm(in_features=5480, out_features=2, bias=True, max_norm=0.5, p=2)
+                 (3): LogSoftmax(dim=1)
+               )
+             )
+             =================================================================
+             Layer (type:depth-idx)                   Param #
+             =================================================================
+             ShallowConvNet                           --
+             ├─Sequential: 1-1                        --
+             │    └─Conv2dWithNorm: 2-1               560
+             │    └─Conv2dWithNorm: 2-2               800
+             │    └─BatchNorm2d: 2-3                  80
+             │    └─Lambda: 2-4                       --
+             │    └─AvgPool2d: 2-5                    --
+             │    └─Lambda: 2-6                       --
+             ├─Sequential: 1-2                        --
+             │    └─Flatten: 2-7                      --
+             │    └─Dropout: 2-8                      --
+             │    └─LinearWithNorm: 2-9               10,962
+             │    └─LogSoftmax: 2-10                  --
+             =================================================================
+             Total params: 12,402
+             Trainable params: 12,402
+             Non-trainable params: 0
+             =================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: Adam
+             [Learning rate]: 0.001
+             [Grad Acc]: 1
+             [Batch Size]: 128
+  [k]: 5
+  [out_folder]: out
+  [max_epochs_s1]: 1500
+  [max_epochs_s2]: 600
+  [no_increase_epochs]: 100
+  [second_stage]: True
+  [load_best_state]: True
+  [var_check]: val_inacc
+  [isolate_testset]: True
+  [shuffle]: True
+  [seed]: 42
+  [verbose]: INFO
+]
+[Custom dataset]
+---------- Sub_1 ----------
+Acc = 80.50% | Kappa = 0.61
+
+---------- Sub_2 ----------
+Acc = 72.50% | Kappa = 0.45
+
+---------- Sub_3 ----------
+Acc = 94.40% | Kappa = 0.89
+
+---------- Sub_4 ----------
+Acc = 61.50% | Kappa = 0.23
+
+---------- Sub_5 ----------
+Acc = 83.80% | Kappa = 0.68
+
+---------- Sub_6 ----------
+Acc = 75.00% | Kappa = 0.50
+
+---------- Sub_7 ----------
+Acc = 54.30% | Kappa = 0.09
+
+---------- Sub_8 ----------
+Acc = 61.40% | Kappa = 0.23
+
+---------- Sub_9 ----------
+Acc = 72.80% | Kappa = 0.46
+
+---------- Sub_10 ----------
+Acc = 58.90% | Kappa = 0.18
+
+---------- Sub_11 ----------
+Acc = 53.60% | Kappa = 0.07
+
+---------- Sub_12 ----------
+Acc = 65.60% | Kappa = 0.31
+
+---------- Sub_13 ----------
+Acc = 56.70% | Kappa = 0.13
+
+---------- Sub_14 ----------
+Acc = 56.40% | Kappa = 0.13
+
+---------- Sub_15 ----------
+Acc = 60.60% | Kappa = 0.21
+
+---------- Sub_16 ----------
+Acc = 50.10% | Kappa = 0.00
+
+---------- Sub_17 ----------
+Acc = 66.10% | Kappa = 0.32
+
+---------- Sub_18 ----------
+Acc = 82.50% | Kappa = 0.65
+
+---------- Sub_19 ----------
+Acc = 75.70% | Kappa = 0.51
+
+---------- Sub_20 ----------
+Acc = 60.40% | Kappa = 0.21
+
+---------- Sub_21 ----------
+Acc = 96.60% | Kappa = 0.93
+
+---------- Sub_22 ----------
+Acc = 66.50% | Kappa = 0.33
+
+---------- Sub_23 ----------
+Acc = 66.30% | Kappa = 0.33
+
+---------- Sub_24 ----------
+Acc = 50.70% | Kappa = 0.01
+
+---------- Sub_25 ----------
+Acc = 68.30% | Kappa = 0.37
+
+---------- Sub_26 ----------
+Acc = 53.30% | Kappa = 0.07
+
+---------- Sub_27 ----------
+Acc = 54.30% | Kappa = 0.09
+
+---------- Sub_28 ----------
+Acc = 88.10% | Kappa = 0.76
+
+---------- Sub_29 ----------
+Acc = 93.30% | Kappa = 0.87
+
+---------- Sub_30 ----------
+Acc = 61.90% | Kappa = 0.24
+
+---------- Sub_31 ----------
+Acc = 59.20% | Kappa = 0.18
+
+---------- Sub_32 ----------
+Acc = 87.00% | Kappa = 0.74
+
+---------- Sub_33 ----------
+Acc = 95.30% | Kappa = 0.91
+
+---------- Sub_34 ----------
+Acc = 52.40% | Kappa = 0.05
+
+---------- Sub_35 ----------
+Acc = 70.80% | Kappa = 0.42
+
+---------- Sub_36 ----------
+Acc = 96.60% | Kappa = 0.93
+
+---------- Sub_37 ----------
+Acc = 92.50% | Kappa = 0.85
+
+---------- Sub_38 ----------
+Acc = 49.50% | Kappa = -0.01
+
+---------- Sub_39 ----------
+Acc = 79.20% | Kappa = 0.58
+
+---------- Sub_40 ----------
+Acc = 56.90% | Kappa = 0.14
+
+---------- Sub_41 ----------
+Acc = 49.40% | Kappa = -0.01
+
+---------- Sub_42 ----------
+Acc = 54.70% | Kappa = 0.09
+
+---------- Sub_43 ----------
+Acc = 69.00% | Kappa = 0.38
+
+---------- Sub_44 ----------
+Acc = 96.10% | Kappa = 0.92
+
+---------- Sub_45 ----------
+Acc = 90.10% | Kappa = 0.80
+
+---------- Sub_46 ----------
+Acc = 61.20% | Kappa = 0.22
+
+---------- Sub_47 ----------
+Acc = 56.70% | Kappa = 0.13
+
+---------- Sub_48 ----------
+Acc = 57.90% | Kappa = 0.16
+
+---------- Sub_49 ----------
+Acc = 67.20% | Kappa = 0.34
+
+---------- Sub_50 ----------
+Acc = 51.70% | Kappa = 0.03
+
+---------- Sub_51 ----------
+Acc = 58.50% | Kappa = 0.17
+
+---------- Sub_52 ----------
+Acc = 67.10% | Kappa = 0.34
+
+---------- Sub_53 ----------
+Acc = 53.70% | Kappa = 0.07
+
+---------- Sub_54 ----------
+Acc = 53.20% | Kappa = 0.06
+
+---------- MODEL ----------
+Acc = 67.93% | Kappa = 0.36
