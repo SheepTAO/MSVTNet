@@ -23,7 +23,7 @@ The main following packages are required:
 - [PyTorch 2.0.1 + PyTorch CUDA 11.8](https://pytorch.org/get-started/previous-versions/#v201)
 - [dpeeg 0.3.6](https://pypi.org/project/dpeeg/0.3.6/)
 
-more detailed dependencies are in [environment.yml](https://github.com/SheepTAO/MSVTNet/tree/main/out/environment.yml). Build the development
+more detailed dependencies are in [environment.yml](https://github.com/SheepTAO/MSVTNet/tree/main/environment.yml). Build the development
 environment using [Miniconda](https://docs.anaconda.com/free/miniconda/):
 
 ```shell
