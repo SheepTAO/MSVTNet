@@ -1,0 +1,129 @@
+[Start Time]: Fri May 10 12:25:39 2024
+[DPEEG Version]: 0.3.6
+[Description]: None
+[KFold:
+  [trainer]: [Network architecture]:
+             IFNet(
+               (sConv): Sequential(
+                 (0): Conv1d(6, 128, kernel_size=(1,), stride=(1,), groups=2, bias=False)
+                 (1): BatchNorm1d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+               )
+               (tConv): ModuleList(
+                 (0): Sequential(
+                   (0): Conv1d(64, 64, kernel_size=(63,), stride=(1,), padding=(31,), groups=64, bias=False)
+                   (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 )
+                 (1): Sequential(
+                   (0): Conv1d(64, 64, kernel_size=(31,), stride=(1,), padding=(15,), groups=64, bias=False)
+                   (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                 )
+               )
+               (interFre): InterFre()
+               (downSamp): Sequential(
+                 (0): AvgPool1d(kernel_size=(125,), stride=(125,), padding=(0,))
+                 (1): Dropout(p=0.5, inplace=False)
+               )
+               (fc): Sequential(
+                 (0): Flatten(start_dim=1, end_dim=-1)
+                 (1): Linear(in_features=512, out_features=2, bias=True)
+                 (2): LogSoftmax(dim=1)
+               )
+             )
+             ==========================================================================================
+             Layer (type:depth-idx)                   Output Shape              Param #
+             ==========================================================================================
+             IFNet                                    [1, 2]                    --
+             ├─Sequential: 1-1                        [1, 128, 1000]            --
+             │    └─Conv1d: 2-1                       [1, 128, 1000]            384
+             │    └─BatchNorm1d: 2-2                  [1, 128, 1000]            256
+             ├─ModuleList: 1-2                        --                        --
+             │    └─Sequential: 2-3                   [1, 64, 1000]             --
+             │    │    └─Conv1d: 3-1                  [1, 64, 1000]             4,032
+             │    │    └─BatchNorm1d: 3-2             [1, 64, 1000]             128
+             │    └─Sequential: 2-4                   [1, 64, 1000]             --
+             │    │    └─Conv1d: 3-3                  [1, 64, 1000]             1,984
+             │    │    └─BatchNorm1d: 3-4             [1, 64, 1000]             128
+             ├─InterFre: 1-3                          [1, 64, 1000]             --
+             ├─Sequential: 1-4                        [1, 64, 8]                --
+             │    └─AvgPool1d: 2-5                    [1, 64, 8]                --
+             │    └─Dropout: 2-6                      [1, 64, 8]                --
+             ├─Sequential: 1-5                        [1, 2]                    --
+             │    └─Flatten: 2-7                      [1, 512]                  --
+             │    └─Linear: 2-8                       [1, 2]                    1,026
+             │    └─LogSoftmax: 2-9                   [1, 2]                    --
+             ==========================================================================================
+             Total params: 7,938
+             Trainable params: 7,938
+             Non-trainable params: 0
+             Total mult-adds (M): 6.40
+             ==========================================================================================
+             Input size (MB): 0.02
+             Forward/backward pass size (MB): 4.10
+             Params size (MB): 0.03
+             Estimated Total Size (MB): 4.15
+             ==========================================================================================
+             [Loss function]: NLLLoss
+             [Optimizer]: <class 'dpeeg.models.IFNet.IFNetAdamW'>
+             [Learning rate]: 0.001
+             [Grad Acc]: 1
+             [Batch Size]: 128
+  [k]: 5
+  [out_folder]: out
+  [max_epochs_s1]: 1500
+  [max_epochs_s2]: 600
+  [no_increase_epochs]: 100
+  [second_stage]: True
+  [load_best_state]: True
+  [var_check]: val_inacc
+  [isolate_testset]: True
+  [shuffle]: True
+  [seed]: 42
+  [verbose]: INFO
+]
+[BCICIV2B:
+  [subjects]: None
+  [tmin]: 0
+  [tmax]: 4
+  [preprocess]: None
+  [transforms]: ComposeTransforms(
+                 (0): Normalization(mode=z-score, factor_new=0.001, verbose=None)
+                 (1): ApplyFunc(func=<function cfc_filter at 0x7f62dbd08430>, mode=all, data=True, kwargs={'filter_bank': [[4, 16], [16, 40]]})
+                 (2): Augmentation(method=segmentation_and_reconstruction, only_train=True, kwargs={'multiply': 1})
+                )
+  [test_size]: 0.25
+  [mode]: cross_ses
+  [test_sessions]: [3, 4]
+  [picks]: None
+  [baseline]: None
+  [seed]: 42
+  [verbose]: None
+]
+---------- Sub_1 ----------
+Acc = 73.25% | Kappa = 0.46
+
+---------- Sub_2 ----------
+Acc = 54.71% | Kappa = 0.09
+
+---------- Sub_3 ----------
+Acc = 59.06% | Kappa = 0.18
+
+---------- Sub_4 ----------
+Acc = 97.50% | Kappa = 0.95
+
+---------- Sub_5 ----------
+Acc = 86.19% | Kappa = 0.72
+
+---------- Sub_6 ----------
+Acc = 84.62% | Kappa = 0.69
+
+---------- Sub_7 ----------
+Acc = 83.19% | Kappa = 0.66
+
+---------- Sub_8 ----------
+Acc = 92.81% | Kappa = 0.86
+
+---------- Sub_9 ----------
+Acc = 90.19% | Kappa = 0.80
+
+-------------- MODEL
+Acc = 80.17%±14.01 | Kappa = 0.60
