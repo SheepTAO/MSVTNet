@@ -63,4 +63,26 @@ The overall classification results for MSVTNet and other competing architectures
 
 For easy reference, detailed results of all analyses are reorganized in the [supporting document](https://github.com/SheepTAO/MSVTNet/tree/main/Supplement_document_of_MSVTNet.pdf).
 
-# References
+# Cite
+
+If you find this architecture or toolbox useful then please cite this paper:
+
+```
+Liu, Ke, Tao Yang, Zhuliang Yu, Weibo Yi, Hong Yu, Guoyin Wang, and Wei Wu. "MSVTNet: Multi-Scale Vision Transformer Neural Network for EEG-Based Motor Imagery Decoding." IEEE Journal of Biomedical and Health Informatics (2024).
+```
+
+and here is the Bibtex version:
+
+```
+@article{liu2024msvtnet,
+  title={MSVTNet: Multi-Scale Vision Transformer Neural Network for EEG-Based Motor Imagery Decoding},
+  author={Liu, Ke and Yang, Tao and Yu, Zhuliang and Yi, Weibo and Yu, Hong and Wang, Guoyin and Wu, Wei},
+  journal={IEEE Journal of Biomedical and Health Informatics},
+  year={2024},
+  volume={},
+  number={},
+  pages={1-12},
+  publisher={IEEE},
+  doi={10.1109/JBHI.2024.3450753}
+}
+```
