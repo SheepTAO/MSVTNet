@@ -79,8 +79,8 @@ and here is the Bibtex version:
   author={Liu, Ke and Yang, Tao and Yu, Zhuliang and Yi, Weibo and Yu, Hong and Wang, Guoyin and Wu, Wei},
   journal={IEEE Journal of Biomedical and Health Informatics},
   year={2024},
-  volume={},
-  number={},
+  volume={28},
+  number={12},
   pages={1-12},
   publisher={IEEE},
   doi={10.1109/JBHI.2024.3450753}
