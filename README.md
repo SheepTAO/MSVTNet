@@ -81,7 +81,7 @@ and here is the Bibtex version:
   year={2024},
   volume={28},
   number={12},
-  pages={1-12},
+  pages={7126-7137},
   publisher={IEEE},
   doi={10.1109/JBHI.2024.3450753}
 }
